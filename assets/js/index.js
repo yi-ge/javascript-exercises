@@ -869,7 +869,7 @@ function TiMu () {
       }
       var div4 = document.createElement("div");
       div4.className = "entrance-bottom-frame-line-button-frame";
-      div4.innerHTML = data1[i].options[j];
+      div4.innerHTML = marked(data1[i].options[j]);
       div3.appendChild(div3_id)
       div3.appendChild(div4);
       document.querySelectorAll(".entrance-bottom-frame-line")[i].appendChild(div3);
