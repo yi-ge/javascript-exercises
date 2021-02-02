@@ -25,5 +25,5 @@ for (const n in json) {
   json[n]['options'] = options
 }
 
-fs.writeFileSync(path.join(__dirname, '../assets/js/data.json'), JSON.stringify(json, null, 2), 'utf8')
+fs.writeFileSync(path.join(__dirname, './data.json'), JSON.stringify(json, null, 2), 'utf8')
 

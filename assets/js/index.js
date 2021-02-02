@@ -832,7 +832,7 @@ marked.setOptions({
   }
 });
 
-function TiMu () {
+function Run () {
   const sumAll = data1.length
   for (var i in data1) {
     var div = document.createElement("div");
@@ -878,25 +878,24 @@ function TiMu () {
   mintime = 1;
   var dact = document.querySelector(".entrance-bottom-frame-line")
   var active = "active"
-  var none = "none"
   addClass(dact, active)
   var timu_id = 0
-  var select1 = 1
+  var select = 1
   var frame_left = 0
   document.querySelector(".entrance-bottom-frame").style.marginLeft = frame_left + "%"
-  document.querySelector(".topic-frameli").innerHTML = "第 " + "<div>" + select1 + "</div>" + "/" + sumAll + " 题"
+  document.querySelector(".topic-frameli").innerHTML = "第 " + "<div>" + select + "</div>" + "/" + sumAll + " 题"
   for (var i = 0; i < document.querySelectorAll(".entrance-bottom-frame-line-button").length; i++) {
     document.querySelectorAll(".entrance-bottom-frame-line-button")[i].onclick = function () {
-      console.log(select1, this.id, data1[select1 - 1].answer === this.id ? '对' : '错')
-      data1[select1 - 1].user = this.id
+      console.log(select, this.id, data1[select - 1].answer === this.id ? '对' : '错')
+      data1[select - 1].user = this.id
 
       if (timu_id < document.querySelectorAll(".entrance-bottom-frame-line").length - 1) {
         frame_left += -100
         document.querySelector(".entrance-bottom-frame").style.marginLeft = frame_left + "%"
 
         timu_id++;
-        select1++;
-        document.querySelector(".topic-frameli").innerHTML = "第 " + "<div>" + select1 + "</div>" + "/" + sumAll + " 题"
+        select++;
+        document.querySelector(".topic-frameli").innerHTML = "第 " + "<div>" + select + "</div>" + "/" + sumAll + " 题"
         addClass(document.querySelectorAll(".entrance-bottom-frame-line")[timu_id], active)
         removeClass(document.querySelectorAll(".entrance-bottom-frame-line")[timu_id - 1], active)
 
@@ -948,26 +947,26 @@ function TiMu () {
 }
 
 function addClass (obj, cls) {
-  var obj_class = obj.className,//获取 class 内容.
-    blank = (obj_class != '') ? ' ' : '';//判断获取到的 class 是否为空, 如果不为空在前面加个'空格'.
-  added = obj_class + blank + cls;//组合原来的 class 和需要添加的 class.
-  obj.className = added;//替换原来的 class.
+  var obj_class = obj.className,
+    blank = (obj_class != '') ? ' ' : '';
+  added = obj_class + blank + cls;
+  obj.className = added;
 }
 
 function removeClass (obj, cls) {
-  var obj_class = ' ' + obj.className + ' ';//获取 class 内容, 并在首尾各加一个空格. ex) 'abc    bcd' -> ' abc    bcd '
-  obj_class = obj_class.replace(/(\s+)/gi, ' '),//将多余的空字符替换成一个空格. ex) ' abc    bcd ' -> ' abc bcd '
-    removed = obj_class.replace(' ' + cls + ' ', ' ');//在原来的 class 替换掉首尾加了空格的 class. ex) ' abc bcd ' -> 'bcd '
-  removed = removed.replace(/(^\s+)|(\s+$)/g, '');//去掉首尾空格. ex) 'bcd ' -> 'bcd'
-  obj.className = removed;//替换原来的 class.
+  var obj_class = ' ' + obj.className + ' ';
+  obj_class = obj_class.replace(/(\s+)/gi, ' ');
+  removed = obj_class.replace(' ' + cls + ' ', ' ');
+  removed = removed.replace(/(^\s+)|(\s+$)/g, '');
+  obj.className = removed;
 }
 
 function hasClass (obj, cls) {
-  var obj_class = obj.className,//获取 class 内容.
-    obj_class_lst = obj_class.split(/\s+/);//通过split空字符将cls转换成数组.
+  var obj_class = obj.className,
+    obj_class_lst = obj_class.split(/\s+/);
   x = 0;
   for (x in obj_class_lst) {
-    if (obj_class_lst[x] == cls) {//循环数组, 判断是否包含cls
+    if (obj_class_lst[x] == cls) {
       return true;
     }
   }
