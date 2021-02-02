@@ -15,6 +15,7 @@ for (const n in json) {
   delete json[n][key]
 
   const option = json[n]['question'].slice(json[n]['question'].search(/- A:.*/i), json[n]['question'].length - 2)
+  json[n]['optionStr'] = json[n]['question'].slice(json[n]['question'].search(/- A:.*/i), json[n]['question'].length)
   json[n]['question'] = json[n]['question'].substring(0, json[n]['question'].search(/- A:.*/i))
   let options = option.replace('- A: ', '').replace('- B: ', '').replace('- C: ', '').replace('- D: ', '').split('\n')
 
