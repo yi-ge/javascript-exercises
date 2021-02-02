@@ -883,10 +883,10 @@ function Run () {
   var select = 1
   var frame_left = 0
   document.querySelector(".entrance-bottom-frame").style.marginLeft = frame_left + "%"
-  document.querySelector(".topic-frameli").innerHTML = "第 " + "<div>" + select + "</div>" + "/" + sumAll + " 题"
+  document.querySelector(".topic-frameli").innerHTML = "<div>" + select + "</div>" + "/" + sumAll
   for (var i = 0; i < document.querySelectorAll(".entrance-bottom-frame-line-button").length; i++) {
     document.querySelectorAll(".entrance-bottom-frame-line-button")[i].onclick = function () {
-      console.log(select, this.id, data1[select - 1].answer === this.id ? '对' : '错')
+      console.log(select, this.id, data1[select - 1].answer === this.id ? 'Right' : 'Wrong')
       data1[select - 1].user = this.id
 
       if (timu_id < document.querySelectorAll(".entrance-bottom-frame-line").length - 1) {
@@ -895,7 +895,7 @@ function Run () {
 
         timu_id++;
         select++;
-        document.querySelector(".topic-frameli").innerHTML = "第 " + "<div>" + select + "</div>" + "/" + sumAll + " 题"
+        document.querySelector(".topic-frameli").innerHTML = "<div>" + select + "</div>" + "/" + sumAll
         addClass(document.querySelectorAll(".entrance-bottom-frame-line")[timu_id], active)
         removeClass(document.querySelectorAll(".entrance-bottom-frame-line")[timu_id - 1], active)
 
@@ -911,7 +911,7 @@ function Run () {
         document.body.innerHTML = ''
 
         var noticeDiv = document.createElement("div");
-        noticeDiv.innerHTML = `<p style="font-size: 18px; font-weight: 600">一共${sumAll}题，做对${score}题。</p>`;
+        noticeDiv.innerHTML = `<p style="font-size: 18px; font-weight: 600">Accuracy: ${score} / ${sumAll}</p>`;
 
         document.body.appendChild(noticeDiv);
 
@@ -919,7 +919,7 @@ function Run () {
 
         for (var i in data1) {
           var div = document.createElement("div");
-          div.innerHTML = `<h3>第${parseInt(i) + 1}题</h3>`;
+          div.innerHTML = `<h3>No. ${parseInt(i) + 1}</h3>`;
 
           var div1 = document.createElement("div");
           div1.innerHTML = marked(data1[i].question);
@@ -928,8 +928,8 @@ function Run () {
           div2.innerHTML = marked(data1[i].optionStr);
 
           var div3 = document.createElement("div");
-          div3.innerHTML = `<p>正确答案：${data1[i].answer}</p>`;
-          div3.innerHTML += `<p>你的答案：${data1[i].user}</p>`;
+          div3.innerHTML = `<p>Answer: ${data1[i].answer}</p>`;
+          div3.innerHTML += `<p>Your answer: ${data1[i].user}</p>`;
 
           var div4 = document.createElement("div");
           div4.innerHTML = marked(data1[i].explain);
